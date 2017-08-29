@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>안녕, 방동근v김애진!</title>
+  <script src="https://unpkg.com/vue@2.4.2/dist/vue.min.js"></script>  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/nanummyeongjo.css" type="text/css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>  
+  <div id="app" class="container">    
+    <img src="images/main.png" alt="방동근v김애진">    
+    <img src="images/invitation.png" alt="초대합니다">    
+    <div class="control">
+      <a @click="prev" class="button is-small is-warning"><i class="fa fa-caret-left"></i></a>       
+      <a @click="next" class="button is-small is-warning"><i class="fa fa-caret-right"></i></a>
+    </div>
+    <div v-for="number in [currentNumber]" transition="fade">
+      <img
+        :src="images[Math.abs(currentNumber) % images.length]"
+        v-on:mouseover="stopRotation"
+        v-on:mouseout="startRotation"
+      />
+    </div>    
+    <img src="images/location.png" alt="오시는 길">
+    <div id="location">
+      <div>씨엘드포레 (T. 053-767-2330)</div>
+      <div>대구광역시 달성군 가창면 가창로 891</div>
+      <div class="navigation">
+        <a class="button is-small is-primary" href="http://wedding.lulab.net/images/map.jpg">
+          <span class="icon is-small">
+            <i class="fa fa-map"></i>
+          </span>
+          <span>약도보기</span>
+        </a>        
+        <a class="button is-small is-success" href="http://naver.me/59zi5GRA">
+          <span class="icon is-small">
+            <i class="fa fa-map-marker"></i>
+          </span>
+          <span>네이버 길찾기</span>
+        </a>
+        <a class="button is-small is-warning" href="http://dmaps.kr/6zu7v">
+          <span class="icon is-small">
+            <i class="fa fa-map-pin"></i>
+          </span>
+          <span>다음 길찾기</span>
+        </a>
+      </div>
+    </div>
+    <div id="comment">
+      <h1>행복하다는 그 말 한마디,</h1>
+      <div id="disqus_thread"></div>      
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>                    
+    </div>
+    <footer id="footer" class="footer">
+      <div class="content has-text-centered">
+          <p><a href="http://blog.lulab.net">방동근v김애진</a>이 직접 만든 모바일 청접장입니다.</p>
+          <p>
+            <a class="icons" href="https://github.com/lubang/wedding-lulab-net">            
+              <i class="fa fa-github"></i> Github
+            </a>에 코드를 올려두었습니다.
+          </p>
+          <p>2017년 9월 23일은 참 좋은 날입니다.<p>
+          <p>-<p>
+          <p>
+            <strong>Hello, world with you.</strong>
+          </p>
+        </div>
+    </footer>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+
+      data: {
+        isVisibleMap: false,
+        images: [          
+          'photos/01(2).jpg',
+          'photos/03(1).jpg',
+          'photos/04.jpg',
+          'photos/05(1).jpg',
+          'photos/06(1).jpg',
+          'photos/07.jpg',
+          'photos/08(1).jpg',
+          'photos/10.jpg',
+          'photos/01(1).jpg',
+        ],
+        currentNumber: 0,
+        timer: null
+      },
+
+      ready: function () {
+          this.startRotation();
+      },
+  
+      methods: {
+          startRotation: function() {
+              this.timer = setInterval(this.next, 7000);
+          },
+  
+          stopRotation: function() {
+              clearTimeout(this.timer);
+              this.timer = null;
+          },
+  
+          next: function() {
+              this.currentNumber += 1
+          },
+          prev: function() {
+              this.currentNumber -= 1
+          }
+      }
+    });
+
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://wedding-lulab-net.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-43684036-4', 'auto');
+    ga('send', 'pageview');
+  </script>
+</body>
+</html>
