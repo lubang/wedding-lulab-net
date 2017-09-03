@@ -1,69 +1,74 @@
 <template>
-  <v-layout column>
-    <v-flex xs12 sm6 offset-sm3>
-      <v-system-bar status class="indigo darken-2" dark>
-        <v-spacer></v-spacer>
-        <v-icon>network_wifi</v-icon>
-        <v-icon>signal_cellular_null</v-icon>
-        <v-icon>battery_full</v-icon>
-        <span>12:30</span>
-      </v-system-bar>
-      <v-toolbar class="indigo" dark>
-        <v-toolbar-side-icon></v-toolbar-side-icon>
-        <v-toolbar-title>Discover</v-toolbar-title>
-        <v-spacer></v-spacer>
-        <v-btn icon>
-          <v-icon>search</v-icon>
+  <v-card flat>
+    <v-card-media :src="gallerySrc" height="50vh">
+    </v-card-media>
+    <v-card-title primary-title>
+      <div>
+        <h3 class="headline mb-0">{{galleryTitle}}</h3>
+        <div>{{galleryDesc}}</div>
+      </div>
+    </v-card-title>
+    <v-card-actions>
+      <div class="text-xs-center">
+        <v-btn outline v-on:click="prev()">
+          <v-icon light left>fa-angle-left</v-icon>
+          PREV
         </v-btn>
-      </v-toolbar>
-      <v-container fluid grid-list-md class="grey lighten-4">
-        <v-layout row wrap>
-          <v-flex
-            v-bind="{ [`xs${card.flex}`]: true }"
-            v-for="card in cards"
-            :key="card.title"
-          >
-            <v-card>
-              <v-card-media
-                :src="card.src"
-                height="200px"
-              >
-                <v-container fill-height fluid>
-                  <v-layout fill-height>
-                    <v-flex xs12 align-end flexbox>
-                      <span class="headline white--text" v-text="card.title"></span>
-                    </v-flex>
-                  </v-layout>
-                </v-container>
-              </v-card-media>
-              <v-card-actions class="white">
-                <v-spacer></v-spacer>
-                <v-btn icon>
-                  <v-icon>favorite</v-icon>
-                </v-btn>
-                <v-btn icon>
-                  <v-icon>bookmark</v-icon>
-                </v-btn>
-                <v-btn icon>
-                  <v-icon>share</v-icon>
-                </v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-flex>
-        </v-layout>
-      </v-container>
-    </v-flex>
-  </v-layout>
+        <v-btn outline v-on:click="next()">
+          NEXT
+          <v-icon light right>fa-angle-right</v-icon>
+        </v-btn>
+      </div>
+    </v-card-actions>
+  </v-card>
 </template>
 
 <script>
-  export default {
-    data: () => ({
-      cards: [
-        { title: 'Pre-fab homes', src: '/static/doc-images/cards/house.jpg', flex: 12 },
-        { title: 'Favorite road trips', src: '/static/doc-images/cards/road.jpg', flex: 6 },
-        { title: 'Best airlines', src: '/static/doc-images/cards/plane.jpg', flex: 6 }
-      ]
-    })
-  }
+export default {
+  name: 'gallery',
+  methods: {
+    next() {
+      this.photoIndex = this.photoIndex + 1;
+      if (this.photoIndex >= this.photos.length) {
+        this.photoIndex = 0;
+      }
+      this.refreshGallery();
+    },
+    prev() {
+      this.photoIndex = this.photoIndex - 1;
+      if (this.photoIndex < 0) {
+        this.photoIndex = this.photos.length - 1;
+      }
+      this.refreshGallery();
+    },
+    refreshGallery() {
+      const photo = this.photos[this.photoIndex];
+      this.gallerySrc = `/static/photos/${photo.src}`;
+      this.galleryTitle = photo.title;
+      this.galleryDesc = photo.desc;
+    },
+  },
+  created() {
+    this.refreshGallery();
+  },
+  data() {
+    return {
+      gallerySrc: '',
+      galleryTitle: 'Hello',
+      galleryDesc: 'Hello',
+      photoIndex: 0,
+      photos: [
+        { src: '01.jpg', title: '안녕하세요.', desc: '방동근v김애진 결혼합니다. 저희의 결혼 축하에 너~무 감사드립니다.' },
+        { src: '02.jpg', title: '어색어색~', desc: '오랜만에 연락드리는 분들께 어색함을 표현한 사진입니다.' },
+        { src: '03.jpg', title: '촌스러운, 아니 클래식한', desc: '클래식한 매력이 있는 모습이에요.' },
+        { src: '04.jpg', title: '훗훗', desc: '즐거운, 행복한 표정으로' },
+        { src: '05.jpg', title: '앗!', desc: '처음보는 사람이라고 생각하실 수도 있겠지만' },
+        { src: '06.jpg', title: '맞습니다. 맞고요', desc: '방동근v김애진 맞습니다!' },
+        { src: '07.jpg', title: '행복하게', desc: '살아보겠습니다. 사진으로 기억도 많이 남기고요.' },
+        { src: '08.jpg', title: '부드럽게', desc: '즐겁게 행복하게' },
+        { src: '09.jpg', title: '그렇게, 계속', desc: '살아가 보겠습니다!' },
+      ],
+    };
+  },
+};
 </script>

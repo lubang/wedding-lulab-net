@@ -1,11 +1,30 @@
 <template>
-  <img src="../assets/getting_married.png" class="image"></img>
+  <div>
+    <div id="top" class="page">
+      <img src="../assets/getting_married.png"></img>
+    </div>
+    <div class="page">
+      <img src="../assets/invitation.png"></img>
+    </div>
+    <gallery-view id="photo"></gallery-view>
+    <navigation-view id="bus"></navigation-view>
+  </div>
 </template>
 
-<style scoped>
-img {
-  max-width:100%;
-  max-height:100%;
-}
-</style>
+<script>
+import Gallery from '../components/Gallery';
+import Navigation from '../components/Navigation';
+
+export default {
+  name: 'getting-married',
+  components: {
+    'gallery-view': Gallery,
+    'navigation-view': Navigation,
+  },
+  data() {
+    return {
+    };
+  },
+};
+</script>
 

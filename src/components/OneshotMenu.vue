@@ -1,6 +1,4 @@
 <template>
-
-
   <v-speed-dial
     v-model="fab"
     :top="top"
@@ -15,32 +13,34 @@
       id="oneshot-menu"
       class="deep-orange"
       slot="activator"
-      dark fab fixed bottom left small
+      dark fab fixed bottom left
       v-model="fab"
     >
       <v-icon>fa-heart</v-icon>
     </v-btn>
-
     <v-btn
       id="oneshot-menu-story"
       class="cyan"
-      dark fab fixed bottom left small
+      dark fab fixed bottom left
+      v-on:click="gotoTop()"
     >
-      <v-icon>fa-story</v-icon>
+      <v-icon>fa-vcard-o</v-icon>
     </v-btn>
     <v-btn
       id="oneshot-menu-bus"
       class="light-blue"
-      dark fab fixed bottom left small
+      dark fab fixed bottom left
+      v-on:click="gotoBus()"
     >
-      <v-icon>fa-invitation</v-icon>
+      <v-icon>fa-bus</v-icon>
     </v-btn>
     <v-btn
       id="oneshot-menu-gallery"
       class="red"
-      dark fab fixed bottom left small
+      dark fab fixed bottom left
+      v-on:click="gotoPhoto()"
     >
-      <v-icon>fa-delete</v-icon>
+      <v-icon>fa-photo</v-icon>
     </v-btn>
   </v-speed-dial>
 </template>
@@ -85,23 +85,32 @@ export default {
       }
     },
   },
+
+  methods: {
+    gotoTop() {
+      document.getElementById('top').scrollIntoView();
+    },
+    gotoPhoto() {
+      document.getElementById('photo').scrollIntoView();
+    },
+    gotoBus() {
+      document.getElementById('bus').scrollIntoView();
+    },
+  },
 };
 </script>
 
-<style>
+<style scoped>
 #oneshot-menu {
   z-index: 100;
 }
-#oneshot-menu-bus {
-  margin-left: 30px;
-  margin-bottom: 70px;
+#oneshot-menu-story {
+  margin-bottom: 250px;
 }
-#oneshot-menu-invitation {
-  margin-left: 70px;
-  margin-bottom: 30px;
+#oneshot-menu-bus {
+  margin-bottom: 170px;
 }
 #oneshot-menu-gallery {
-  margin-left: 90px;
-  margin-bottom: 0px;
+  margin-bottom: 90px;
 }
 </style>
