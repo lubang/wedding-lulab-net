@@ -16,7 +16,7 @@
       dark fab fixed bottom left
       v-model="fab"
     >
-      <v-icon>fa-heart</v-icon>
+      <v-icon>favorite</v-icon>
     </v-btn>
     <v-btn
       id="oneshot-menu-story"
@@ -24,7 +24,7 @@
       dark fab fixed bottom left
       v-on:click="gotoTop()"
     >
-      <v-icon>fa-vcard-o</v-icon>
+      <v-icon>email</v-icon>
     </v-btn>
     <v-btn
       id="oneshot-menu-bus"
@@ -32,7 +32,7 @@
       dark fab fixed bottom left
       v-on:click="gotoBus()"
     >
-      <v-icon>fa-bus</v-icon>
+      <v-icon>directions_bus</v-icon>
     </v-btn>
     <v-btn
       id="oneshot-menu-gallery"
@@ -40,7 +40,7 @@
       dark fab fixed bottom left
       v-on:click="gotoPhoto()"
     >
-      <v-icon>fa-photo</v-icon>
+      <v-icon>portrait</v-icon>
     </v-btn>
   </v-speed-dial>
 </template>

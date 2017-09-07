@@ -33,23 +33,6 @@
             </v-card-actions>
           </v-card>
         </v-dialog>
-        <v-btn outline class="grey" @click.native.stop="dialogBusDaejeon = true">
-          <v-icon class="icon">fa-ticket</v-icon>
-          <span class="icon-text">버스 (대전 출발)</span>
-        </v-btn>
-        <v-dialog v-model="dialogBusDaejeon" lazy absolute>
-          <v-card>
-            <v-card-title>
-              <div class="headline">버스 (대전 출발) 예약</div>
-            </v-card-title>
-            <v-card-text>본 예약은 9/8일 이후 활성화됩니다.<br />감사합니다.</v-card-text>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn class="green--text darken-1" flat="flat" @click.native="dialogBusDaejeon = false">닫기</v-btn>
-              <v-btn class="green--text darken-1" flat="flat" @click.native="dialogBusDaejeon = false">확인</v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
         <v-alert info value="true" class="ma-3">
           <p>감사합니다.</p><p>버스 탑승은 9/8(금) 이후<br />활성화 됩니다.</p>
         </v-alert>
@@ -63,8 +46,6 @@ export default {
   name: 'navigation',
   methods: {
     bookBusFromSeoul() {
-    },
-    bookBusFromDaejeon() {
     },
   },
   data() {

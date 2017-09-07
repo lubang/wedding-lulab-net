@@ -11,12 +11,12 @@
     <v-card-actions>
       <div class="text-xs-center">
         <v-btn outline v-on:click="prev()">
-          <v-icon light left>fa-angle-left</v-icon>
+          <v-icon light left>chevron_left</v-icon>
           PREV
         </v-btn>
         <v-btn outline v-on:click="next()">
           NEXT
-          <v-icon light right>fa-angle-right</v-icon>
+          <v-icon light right>chevron_right</v-icon>
         </v-btn>
       </div>
     </v-card-actions>

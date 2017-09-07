@@ -1,18 +1,20 @@
 <template>
   <v-app class="app">
-    <router-view></router-view>
+    <getting-married></getting-married>
     <footer-view></footer-view>
     <oneshot-menu></oneshot-menu>
   </v-app>
 </template>
 
 <script>
+import GettingMarried from './components/GettingMarried';
 import Footer from './components/Footer';
 import OneshotMenu from './components/OneshotMenu';
 
 export default {
   name: 'app',
   components: {
+    'getting-married': GettingMarried,
     'footer-view': Footer,
     'oneshot-menu': OneshotMenu,
   },
