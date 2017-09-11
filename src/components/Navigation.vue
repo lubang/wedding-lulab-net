@@ -25,11 +25,24 @@
             <v-card-title>
               <div class="headline">버스 (서울 출발) 예약</div>
             </v-card-title>
-            <v-card-text>본 예약은 9/8일 이후 활성화됩니다.<br />감사합니다.</v-card-text>
+            <v-card-text>
+              <v-form ref="reservation">
+                <v-text-field
+                  label="성함 (가명 적으셔도 됩니다^^)"
+                  v-model="name"
+                  :rules="nameRules"
+                  required
+                ></v-text-field>
+                <v-text-field
+                  label="전화번호 (버스 탑승 위치를 알려드립니다. 안 적으셔도 되요)"
+                  v-model="mobile"
+                ></v-text-field>
+              </v-form>
+            </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn class="green--text darken-1" flat="flat" @click.native="dialogBusSeoul = false">닫기</v-btn>
-              <v-btn class="green--text darken-1" flat="flat" @click.native="dialogBusSeoul = false">확인</v-btn>
+              <v-btn class="green--text darken-1" flat="flat" @click="bookBusFromSeoul()">확인</v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>
@@ -42,17 +55,31 @@
 </template>
 
 <script>
+import reservationApi from '../api/reservation';
+
 export default {
   name: 'navigation',
   methods: {
     bookBusFromSeoul() {
+      if (this.$refs.reservation.validate()) {
+        const payload = {
+          name: this.name,
+          mobile: this.mobile,
+        };
+        reservationApi.save(payload)
+          .then(() => { this.dialogBusSeoul = false; });
+      }
     },
   },
   data() {
     return {
       dialogBusSeoul: false,
       dialogBusDaejeon: false,
-      test: true,
+      name: '',
+      nameRules: [
+        v => !!v || '이름은 꼭 적어주셔야 합니다.',
+      ],
+      mobile: '',
     };
   },
 };
