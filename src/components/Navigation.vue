@@ -16,76 +16,56 @@
         <div class="bus">
           ---
         </div>
+        <v-alert info value="true" class="ma-3">
+          좌석 한정으로 '버스 탑승'을 원하는 분은 꼭 미리 알려주세요.
+        </v-alert>
+        <div class="text-xs-left ma-4">
+          <h4><v-icon>directions_bus</v-icon>버스 탑승 위치</h4>
+          <span class="blue--text">'양재역 9번 출구'와 서초문화예술회관 사이길</span>에서 9/23(토) <span class="blue--text">'10:30분'</span>까지 버스 탑승을 합니다. 상세한 정보는 아래를 클릭해주세요.
+        </div>
         <v-btn outline class="grey" @click.native.stop="handleDisplayReservation()">
           <v-icon class="icon">event_note</v-icon>
-          <span class="icon-text">버스 탑승 신청 (서울)</span>
+          <span class="icon-text">버스탑승 상세 위치보기 (양재역 9번 출구 방향)</span>
         </v-btn>
-        <v-dialog v-model="dialogBusSeoul" lazy absolute>
+        <v-dialog v-model="dialogBusSeoul" lazy absolute width="90vh">
           <v-card>
             <v-card-title>
-              <div class="headline">버스 탑승 신청 (서울)</div>
+              <v-icon large>directions</v-icon><div class="headline">버스 탑승 위치</div>
             </v-card-title>
             <v-card-text>
-              <v-form ref="reservation">
-                <v-text-field
-                  label="성함 (가명 적으셔도 됩니다^^)"
-                  v-model="name"
-                  :rules="nameRules"
-                  required
-                ></v-text-field>
-                <v-text-field
-                  label="전화번호 (버스 안내 용도)"
-                  v-model="mobile"
-                  :rules="mobileRules"
-                  required
-                ></v-text-field>
-              </v-form>
+              <img src="../assets/map.png">
+              <p>양재역에서 하차하고 <span class="yellow">'9번 출구'과 '서초문화예술회관' 사이길</span>에서 버스 탑승하시면 됩니다.</p>
+              <v-layout>
+                <v-flex>
+                  <img src="../assets/bus01.jpg">
+                </v-flex>
+                <v-flex>
+                  <img src="../assets/bus02.jpg">
+                </v-flex>
+              </v-layout>
+              <p>버스는 '<span class="yellow">경기78초 2019</span>, 테마고속투어(주)' 입니다.</p>
+              <p>혹시 차량의 위치를 못 찾겠거나 문의가 필요할 땐<br />방동근v김애진에게 전화/문자 등을 남겨주세요. 확인하여 바로 연락하겠습니다.</p>
+              <v-divider class="mt-3 mb-3"></v-divider>
+              <v-icon large class="mb-3">tag_face</v-icon>
+              <p>하행/상행 길 오고 가실 때<br />간단한 먹거리를 준비하였으니 편안한 마음으로 함께 해주시면 감사하겠습니다.</p>
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn class="green--text darken-1" @click.native="dialogBusSeoul = false">닫기</v-btn>
-              <v-btn class="green--text darken-1" @click="bookBusFromSeoul()">확인</v-btn>
             </v-card-actions>
-            <v-card-text v-if="isSuccess">
-              <v-alert success value="true">
-                성공적으로 등록하였습니다. 결혼식 날 뵈요^^!
-              </v-alert>
-            </v-card-text>
           </v-card>
         </v-dialog>
-        <v-alert info value="true" class="ma-3">
-          '버스 탑승'을 신청하시면 상세 탑승 위치를 '9/20(수)'에 문자로 전달하겠습니다.
-        </v-alert>
-        <div class="text-xs-left ma-4">
-          <h4><v-icon>directions_bus</v-icon>버스 탑승 위치</h4>
-          <span class="blue--text">9/23(토) 10:30분 강남역</span> 부근에서 출발할 예정입니다. 버스 기사님과 정확한 장소가 정해지면 문자로 다시 전달하겠습니다.
-        </div>
       </div>
     </v-container>
   </div>
 </template>
 
 <script>
-import reservationApi from '../api/reservation';
-
 export default {
   name: 'navigation',
   methods: {
     handleDisplayReservation() {
-      this.isSuccess = false;
       this.dialogBusSeoul = true;
-    },
-    bookBusFromSeoul() {
-      if (this.$refs.reservation.validate()) {
-        const payload = {
-          name: this.name,
-          mobile: this.mobile,
-        };
-        reservationApi.save(payload)
-          .then(() => {
-            this.isSuccess = true;
-          });
-      }
     },
   },
   data() {
@@ -100,7 +80,6 @@ export default {
       mobileRules: [
         v => !!v || '전화번호는 꼭 적어주셔야 합니다.',
       ],
-      isSuccess: false,
     };
   },
 };
