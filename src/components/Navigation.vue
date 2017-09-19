@@ -44,14 +44,23 @@
                 </v-flex>
               </v-layout>
               <p>버스는 '<span class="yellow">경기78초 2019</span>, 테마고속투어(주)' 입니다.</p>
-              <p>혹시 차량의 위치를 못 찾겠거나 문의가 필요할 땐<br />방동근v김애진에게 전화/문자 등을 남겨주세요. 확인하여 바로 연락하겠습니다.</p>
+              <p>혹시 차량의 위치를 못 찾겠거나 문의가 필요할 땐<br />버스 탑승을 담당하는 '<span class="yellow">전대우(010-4116-9164)</span>' 친구에게 문자 혹은 전화주세요.</p>
+              <p>확인하여 바로 연락하겠습니다.</p>
+            </v-card-text>
+            <v-card-title>
+              <v-icon large>rotate_right</v-icon><div class="headline">서울 복귀 시간</div>
+            </v-card-title>
+            <v-card-text>
+              <p>식사 후 <span class="yellow">4시 30분</span>까지 하차하신 위치에서 동일한 버스로 탑승하시면됩니다.</p>
+              <p>서울까지 이동 시간은 약 4시간 (휴게 시간 20분 포함)을 예상하여 8시 30분 도착 예정입니다.<br />다시 한 번, 먼 곳까지 찾아와주셔서 매우 감사드립니다.</p>
+            </v-card-text>
+            <v-card-text>
               <v-divider class="mt-3 mb-3"></v-divider>
               <v-icon large class="mb-3">tag_face</v-icon>
               <p>하행/상행 길 오고 가실 때<br />간단한 먹거리를 준비하였으니 편안한 마음으로 함께 해주시면 감사하겠습니다.</p>
             </v-card-text>
             <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn class="green--text darken-1" @click.native="dialogBusSeoul = false">닫기</v-btn>
+              <v-btn block primary class="white--text" @click.native="dialogBusSeoul = false">닫기</v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>
